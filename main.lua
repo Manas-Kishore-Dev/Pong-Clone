@@ -1,22 +1,25 @@
-require "player" 
+require "player"
 require "ball"
+require "computer"
 
 function love.load()
     Player:load()
     Ball:load()
+    Computer:load()
 end
 
 function love.update(dt)
     Player:update(dt)
     Ball:update(dt)
     Ball:collide()
-    
+    Computer:update(dt)
 end 
 
 
 function love.draw()
     Player:draw()
     Ball:draw()
+    Computer:draw()
 end
 
 
