@@ -1,11 +1,14 @@
 require "player"
 require "ball"
 require "computer"
-
+local moonshine = require "moonshine"
 function love.load()
     Player:load()
     Ball:load()
     Computer:load()
+
+    effect = moonshine(moonshine.effects.glow)
+    effect.glow.strength = 10
 end
 
 function love.update(dt)
@@ -13,13 +16,18 @@ function love.update(dt)
     Ball:update(dt)
     Ball:collide()
     Computer:update(dt)
+    Ball:BoundryCollision()
 end 
 
 
 function love.draw()
-    Player:draw()
-    Ball:draw()
-    Computer:draw()
+
+    effect(function ()
+        
+        Player:draw()
+        Ball:draw()
+        Computer:draw()
+    end)    
 end
 
 
